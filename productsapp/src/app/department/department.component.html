@@ -1,0 +1,30 @@
+<mat-card fxFlex>
+    <mat-card-title>Formulario de departamentos</mat-card-title>
+    <mat-card-content>
+        <div fxLayout="column" fxLayoutAlign="space-between">
+            <mat-form-field>
+                <input matInput [(ngModel)]="depName">
+                <mat-hint>Nome do departamento</mat-hint>
+            </mat-form-field>
+        </div>
+
+        <div fxLayout="row" fxLayoutAlign="end end">
+            <button mat-button color="primary" (click)="save()">Salvar</button>
+            <button mat-button color="warn" (click)="cancel()">Cancelar</button>
+        </div>
+
+        <mat-list>
+            <h3 mat-subheader>Departamentos</h3>
+            <mat-list-item *ngFor="let dep of departments">
+                <mat-icon mat-list-icon>folder</mat-icon>
+                <h4 mat-line>{{ dep.name }}</h4>
+                <button mat-icon-button color="warn" (click)="delete(dep)">
+                    <mat-icon>delete</mat-icon>
+                </button>
+                <button mat-icon-button color="primary" (click)="edit(dep)">
+                    <mat-icon>edit</mat-icon>
+                </button>
+            </mat-list-item>
+        </mat-list>
+    </mat-card-content>
+</mat-card>
