@@ -3,7 +3,7 @@
     <mat-card-content>
         <div fxLayout="column" fxLayoutAlign="space-between">
             <mat-form-field>
-                <input matInput [(ngModel)]="depName">
+                <input matInput [(ngModel)]="depName" (keyup.enter)="save()">
                 <mat-hint>Nome do departamento</mat-hint>
             </mat-form-field>
         </div>

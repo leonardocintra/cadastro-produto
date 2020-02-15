@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Department } from '../department';
+import { DepartmentService } from '../department.service';
 
 @Component({
   selector: 'app-department',
@@ -9,21 +10,32 @@ import { Department } from '../department';
 export class DepartmentComponent implements OnInit {
 
   depName: string = '';
-  departments: Department[] = [{
-    name: "doces"
-  }];
+  departments: Department[] = [];
 
-  constructor() { }
+  constructor(private departmentService: DepartmentService) { }
 
   ngOnInit(): void {
+    this.departmentService.get()
+      .subscribe((deps) => this.departments = deps);
   }
 
-  cancel() {}
+  clearFields() {
+    this.depName = "";
+  }
 
-  save() {}
+  cancel() { }
 
-  edit(dep: Department) {}
+  save() {
+    this.departmentService.add({
+      name: this.depName
+    }).subscribe((dep) => {
+      console.log(dep);
+      this.clearFields();
+    }, (err) => console.log(err));
+  }
 
-  delete(dep: Department) {}
+  edit(dep: Department) { }
+
+  delete(dep: Department) { }
 
 }
